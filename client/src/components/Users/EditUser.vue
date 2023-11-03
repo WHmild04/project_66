@@ -63,7 +63,7 @@ import UsersService from '../../services/UsersService';
 <style scoped>
     .edit-header {
         width: 100%;
-        background-color: #564335; /* Brown color */
+        background-color: #3c096c; /* Brown color */
         color: #f8f8f8;
         padding: 15px 20px;
         margin-bottom: 20px;
@@ -138,7 +138,8 @@ import UsersService from '../../services/UsersService';
 
     .back-btn {
         padding: 10px;
-        background-color: #998570;
+        background-color: #7b2cbf;
+;
         color: #fff;
         border: none;
         border-radius: 4px;
@@ -147,7 +148,7 @@ import UsersService from '../../services/UsersService';
     }
 
     .back-btn:hover {
-        background-color: #876e56;
+        background-color: #5a189a;
     }
 
     .user-details {

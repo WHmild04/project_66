@@ -5,6 +5,7 @@
       <p>
         <button @click="logout">Logout</button>
         <button @click="navigateTo('/user/create/')">Create User</button>
+        <button @click="navigateTo('/creams')">Creams</button>
       </p>
     </div>
     <table>
@@ -23,7 +24,7 @@
       <tbody>
         <tr v-for="user in users" :key="user.id">
           <td>{{ user.name }}</td>
-          <td>{{ user.brand }}</td>
+          <td>{{ user.lastname }}</td>
           <td class="action-cell">
             <button @click="navigateTo(`/user/${user.id}`)" class="view-button">ดูข้อมูล</button>
             <button @click="navigateTo(`/user/edit/${user.id}`)" class="edit-button">แก้ไขข้อมูล</button>
@@ -88,9 +89,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #564335; /* SaddleBrown color */
+    background-color: #3c096c; /* SaddleBrown color */
     padding: 10px;
-    color: #f7f3e7;
+    color: #ffffff;
   }
 
   h2 {
@@ -110,8 +111,8 @@
   }
 
   th {
-    background-color: #998570;
-    color: #f7f3e7;
+    background-color: #7b2cbf;
+    color: #ffffff;
   }
 
   .action-header, .action-cell {

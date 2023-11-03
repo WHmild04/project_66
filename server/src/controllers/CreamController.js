@@ -1,62 +1,62 @@
-const { Short } = require("../models");
+const { Cream } = require("../models");
 module.exports = {
   // get all user
   async index(req, res) {
     try {
-      const shorts = await Short.findAll();
-      res.send(shorts);
+      const creams = await Cream.findAll();
+      res.send(creams);
     } catch (err) {
       res.status(500).send({
-        error: "The shorts information was incorrect",
+        error: "The Cream information was incorrect",
       });
     }
   },
   // create user
   async create(req, res) {
     try {
-      const short = await Short.create(req.body);
-      res.send(short.toJSON());
+      const cream = await Cream.create(req.body);
+      res.send(cream.toJSON());
     } catch (err) {
       res.status(500).send({
-        error: "Create user incorrect",
+        error: "Create Cream incorrect",
       });
     }
   },
   // edit user, suspend, active
   async put(req, res) {
     try {
-      await Short.update(req.body, {
+      await Cream.update(req.body, {
         where: {
-          id: req.params.shortId,
+          id: req.params.creamId,
         },
       });
       res.send(req.body);
     } catch (err) {
       res.status(500).send({
-        error: "Update Short incorrect",
+        error: "Update Cream incorrect",
       });
     }
   },
   // delete user
   async remove(req, res) {
     try {
-      const short = await Short.findOne({
+      const cream = await Cream.findOne({
         where: {
-          id: req.params.shortId,
+          id: req.params.creamId,
         },
       });
 
-      if (!short) {
+      if (!cream) {
         return res.status(403).send({
-          error: "The Short information was incorrect",
+          error: "The Cream information was incorrect",
         });
       }
 
-      await short.destroy();
-      res.send(short);
+      await cream.destroy();
+      res.send(cream);
     } catch (err) {
       res.status(500).send({
-        error: "The Short information was incorrect",
+        error: "The Cream information was incorrect",
       });
     }
   },
@@ -64,8 +64,8 @@ module.exports = {
   // get user by id
   async show(req, res) {
     try {
-      const short = await Short.findByPk(req.params.shortId);
-      res.send(short);
+      const cream = await Cream.findByPk(req.params.creamId);
+      res.send(cream);
     } catch (err) {}
   },
 };

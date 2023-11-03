@@ -47,7 +47,7 @@ import UsersService from '../../services/UsersService';
     .form-header {
         text-align: center;
         color: #f8f8f8;
-        background-color: #564335;
+        background-color: #3c096c;
         padding: 15px 0;
         margin-bottom: 20px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -96,7 +96,7 @@ import UsersService from '../../services/UsersService';
     .back-btn {
         flex: 1;
         padding: 10px;
-        background-color: #998570; /* Brown color */
+        background-color: #7b2cbf; /* Brown color */
         color: #fff;
         border: none;
         border-radius: 4px;

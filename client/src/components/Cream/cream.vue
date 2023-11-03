@@ -1,47 +1,35 @@
 <template>
-    <div class="cream-container">
-      <div class="header">
-        <h2>All Cream</h2>
-        <p>
-          <button @click="logout">Logout</button>
-          <button @click="navigateTo('/user/create/')">Create cream</button>
-        </p>
-      </div>
-      <table>
-        <colgroup>
-          <col style="width: 30.33%">
-          <col style="width: 48.33%">
-          <col style="width: 23.33%">
-        </colgroup>
-        <thead>
-          <tr>
-            <th class="action-header">ชื่อสินค้า</th>
-            <th class="action-header">แบรนด์</th>
-            <th class="action-header">ดำเนินการ</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="user in users" :key="user.id">
-            <td>{{ user.name }}</td>
-            <td>{{ user.brand }}</td>
-            <td class="action-cell">
-              <button @click="navigateTo(`/user/${user.id}`)" class="view-button">ดูข้อมูลสินค้า</button>
-              <button @click="navigateTo(`/user/edit/${user.id}`)" class="edit-button">แก้ไขข้อมูล</button>
-              <button @click="deleteUser(user)" class="delete-button">ลบข้อมูล</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="cream-container">
+    <div class="header">
+      <h2>All Cream</h2>
+      <p>
+        <button @click="logout">Logout</button>
+        <button @click="navigateTo('/cream/create/')">Create cream</button>
+      </p>
     </div>
-  </template>
+    <div class="cream-list">
+      <div v-for="cream in creams" :key="cream.id" class="cream-item">
+        <div class="cream-info">
+          <p class="cream-name">{{ cream.name }}</p>
+          <p class="cream-brand">{{ cream.brand }}</p>
+        </div>
+        <div class="cream-actions">
+          <button @click="navigateTo(`/cream/${cream.id}`)" class="view-button">ดูข้อมูลสินค้า</button>
+          <button @click="navigateTo(`/cream/edit/${cream.id}`)" class="edit-button">แก้ไขข้อมูล</button>
+          <button @click="deleteCream(cream)" class="delete-button">ลบข้อมูล</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
     
     <script>
-    import UsersService from '@/services/UsersService';
+    import CreamService from '@/services/CreamService';
     
     export default {
       data() {
         return {
-          users: [],
+          creams: [],
         };
       },
       async created() {
@@ -56,11 +44,11 @@
         navigateTo(route) {
           this.$router.push(route);
         },
-        async deleteUser(user) {
+        async deleteCream(cream) {
           const result = confirm('Want to delete?');
           if (result) {
             try {
-              await UsersService.delete(user);
+              await CreamService.delete(cream);
               await this.refreshData();
             } catch (error) {
               console.error(error);
@@ -68,7 +56,7 @@
           }
         },
         async refreshData() {
-          this.users = (await UsersService.index()).data;
+          this.creams = (await CreamService.index()).data;
         },
       },
     };
@@ -88,37 +76,49 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #564335; /* SaddleBrown color */
+      background-color: #3bc4ce; /* SaddleBrown color */
       padding: 10px;
-      color: #f7f3e7;
+      color: #fffffc;
     }
   
     h2 {
       margin: 0;
     }
   
-    table {
-      width: 100%;
-      border-collapse: collapse;
+    .cream-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
       margin-top: 20px;
     }
   
-    th, td {
+    .cream-item {
+      box-sizing: border-box;
+      width: calc(30.33% - 10px);
+      margin-bottom: 20px;
+      padding: 10px;
       border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
+      background-color: #fff;
     }
   
-    th {
-      background-color: #998570;
-      color: #f7f3e7;
+    .cream-info {
+      margin-bottom: 10px;
     }
   
-    .action-header, .action-cell {
+    .cream-name {
+      font-weight: bold;
+    }
+  
+    .cream-brand {
+      color: #888;
+    }
+  
+    .cream-actions {
       text-align: center;
     }
   
-    button {
+    .cream-actions button {
+      margin: 5px;
       padding: 5px 10px;
       cursor: pointer;
       border: none;
@@ -139,11 +139,5 @@
       background-color: #FF6347; /* Red color */
       color: white;
     }
-  
-    th.action-header,
-    td.action-cell {
-      text-align: center;
-    }
     /* Add more styles as needed */
-  
-  </style> 
+  </style>

@@ -6,9 +6,11 @@ import UserIndex from '@/components/Users/Index'
 import UserCreate from '@/components/Users/CreateUser'
 import UserEdit from '@/components/Users/EditUser'
 import UserShow from '@/components/Users/ShowUser'
-import Usercream from '@/components/Users/cream'
+import cream from '@/components/Cream/cream'
+import CreateCream from '@/components/Cream/CreateCream'
+import EditCream from '@/components/Cream/EditCream'
+import ShowCream from '@/components/Cream/ShowCream'
 
-import UserEdittest1 from '@/components/Users/EditUsertest1'
 
 import Login from '@/components/Login'
 
@@ -17,15 +19,24 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/cream',
-      name: 'cream',
-      component: Usercream
+      path: '/creams',
+      name: 'creams',
+      component: cream
     },
-   
     {
-      path: '/test1',
-      name: 'test1',
-      component: UserEdittest1
+      path: '/cream/create',
+      name: 'creams-create',
+      component: CreateCream
+    },
+    {
+      path: '/cream/edit/:creamId',
+      name: 'creams-edit',
+      component: EditCream
+    },
+    {
+      path: '/cream/:creamId',
+      name: 'cream',
+      component: ShowCream
     },
     {
       path: '/users',

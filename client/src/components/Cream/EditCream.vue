@@ -2,39 +2,39 @@
     <div>
         <h1 class="edit-header">Edit cream</h1>
         <div class="edit-container">
-            <form v-on:submit.prevent="editUser" class="form">
-                <p>ชื่อสินค้า: <input type="text" v-model="user.name"></p>
-                <p>แบรนด์: <input type="text" v-model="user.brand"></p>
-                <p>วิธีใช้: <input type="text" v-model="user.usage"></p>
-                <p>ตำเตือน: <input type="text" v-model="user.warning"></p>
-                <p>วันที่ผลิต: <input type="text" v-model="user.manufactureDate"></p>
-                <p>วันที่หมดอายุ: <input type="text" v-model="user.expiryDate"></p>
-                <p>ส่วนประกอบ: <input type="text" v-model="user.components"></p>
+            <form v-on:submit.prevent="editCream" class="form">
+                <p>ชื่อสินค้า: <input type="text" v-model="cream.name"></p>
+                <p>แบรนด์: <input type="text" v-model="cream.brand"></p>
+                <p>วิธีใช้: <input type="text" v-model="cream.usage"></p>
+                <p>คำเตือน: <input type="text" v-model="cream.warning"></p>
+                <p>วันที่ผลิต: <input type="date" v-model="cream.manufactureDate"></p>
+                <p>วันที่หมดอายุ: <input type="date" v-model="cream.expiryDate"></p>
+                <p>ส่วนประกอบ: <input type="text" v-model="cream.components"></p>
                 <p>
                     <button type="submit" class="edit-btn">Edit cream</button>
-                    <button v-on:click="navigateTo('/users/')" class="back-btn">Back</button>
+                    <button v-on:click="navigateTo('/creams/')" class="back-btn">Back</button>
                 </p>
             </form>
             <div class="user-details">
-                <p>ชื่อสินค้า: {{ user.name }}</p>
-                <p>แบรนด์: {{ user.brand }}</p>
-                <p>วิธีใช้: {{ user.usage }}</p>
-                <p>คำเตือน: {{ user.warning }}</p>
-                <p>วันที่ผลิต: {{ user.manufactureDate }}</p>
-                <p>วันที่หมดอายุ: {{ user.expiryDate }}</p>
-                <p>ส่วนประกอบ: {{ user.components }}</p>
+                <p>ชื่อสินค้า: {{ cream.name }}</p>
+                <p>แบรนด์: {{ cream.brand }}</p>
+                <p>วิธีใช้: {{ cream.usage }}</p>
+                <p>คำเตือน: {{ cream.warning }}</p>
+                <p>วันที่ผลิต: {{ cream.manufactureDate }}</p>
+                <p>วันที่หมดอายุ: {{ cream.expiryDate }}</p>
+                <p>ส่วนประกอบ: {{ cream.components }}</p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import UsersService from '../../services/UsersService';
+import CreamService from '../../services/CreamService';
 
     export default {
         data () {
             return {
-                user: {
+                cream: {
                     name: '',
                     brand: '',
                     usage: '',
@@ -46,21 +46,24 @@ import UsersService from '../../services/UsersService';
             }
         },
         methods: {
-            async editUser () {
+            async editCream () {
                 try {
-                    await UsersService.put(this.user)
+                    await CreamService.put(this.cream)
                     this.$router.push({
-                        name: 'users'
+                        name: 'creams'
                     })
                 }catch (error) {
                     console.log(error)
                 }
-            }
+            },
+            navigateTo(route) {
+            this.$router.push(route)
+        }
         },
         async created () {
             try {
-                let userId = this.$route.params.userId
-                this.user = (await UsersService.show(userId)).data
+                let creamId = this.$route.params.creamId
+                this.cream = (await CreamService.show(creamId)).data
             }catch (error) {
                 console.log (error)
             }
@@ -71,8 +74,8 @@ import UsersService from '../../services/UsersService';
 <style scoped>
     .edit-header {
         width: 100%;
-        background-color: #564335; /* Brown color */
-        color: #f8f8f8;
+        background-color: #3bc4ce;
+        color: #464a56;
         padding: 15px 20px;
         margin-bottom: 20px;
         text-align: center;
@@ -146,8 +149,8 @@ import UsersService from '../../services/UsersService';
 
     .back-btn {
         padding: 10px;
-        background-color: #998570;
-        color: #fff;
+        background-color: #dc331c;
+        color: #fffffc;
         border: none;
         border-radius: 4px;
         cursor: pointer;
@@ -155,7 +158,7 @@ import UsersService from '../../services/UsersService';
     }
 
     .back-btn:hover {
-        background-color: #876e56;
+        background-color: #ab1b09;
     }
 
     .user-details {

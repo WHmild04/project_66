@@ -54,7 +54,7 @@ export default {
 
     .header {
         width: 100%;
-        background-color: #564335;
+        background-color: #3c096c;
         padding: 10px;
         text-align: center;
         border-top-left-radius: 8px;
@@ -88,7 +88,7 @@ export default {
 
     button {
         padding: 10px;
-        background-color: #987861;
+        background-color: #7b2cbf;
         color: #fff;
         border: none;
         border-radius: 4px;
@@ -97,6 +97,6 @@ export default {
     }
 
     button:hover {
-        background-color: #7c563c;
+        background-color: #5a189a;
     }
 </style>

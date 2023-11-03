@@ -7,32 +7,32 @@
         <div class="details-container">
             <div class="details">
                 <h1>Details</h1>
-                <p>ชื่อสินค้า: {{ user.name }}</p>
-                <p>แบรนด์: {{ user.brand }}</p>
-                <p>วิธีใช้: {{ user.usage }}</p>
-                <p>คำเตือน: {{ user.warning }}</p>
-                <p>วันที่ผลิต: {{ user.manufactureDate }}</p>
-                <p>วันที่หมดอายุ: {{ user.expiryDate }}</p>
-                <p>ส่วนประกอบ: {{ user.components }}</p>
-                <p><button v-on:click="navigateTo('/users/')">back</button></p>
+                <p>ชื่อสินค้า: {{ cream.name }}</p>
+                <p>แบรนด์: {{ cream.brand }}</p>
+                <p>วิธีใช้: {{ cream.usage }}</p>
+                <p>คำเตือน: {{ cream.warning }}</p>
+                <p>วันที่ผลิต: {{ cream.manufactureDate }}</p>
+                <p>วันที่หมดอายุ: {{ cream.expiryDate }}</p>
+                <p>ส่วนประกอบ: {{ cream.components }}</p>
+                <p><button v-on:click="navigateTo('/creams/')">back</button></p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import UsersService from '@/services/UsersService';
+import CreamService from '@/services/CreamService';
 
 export default {
         data () {
             return {
-                user: null
+                cream: null
             }
         },
         async created () {
             try {
-                let userId = this.$route.params.userId
-                this.user = (await UsersService.show(userId)).data
+                let creamId = this.$route.params.creamId
+                this.cream = (await CreamService.show(creamId)).data
             }catch (error) {
                 console.log (error)
             }
@@ -57,7 +57,7 @@ export default {
 
     .header {
         width: 100%;
-        background-color: #564335;
+        background-color: #3bc4ce;
         padding: 10px;
         text-align: center;
         border-top-left-radius: 8px;
@@ -91,8 +91,8 @@ export default {
 
     button {
         padding: 10px;
-        background-color: #987861;
-        color: #fff;
+        background-color: #dc331c;
+        color: #fffffc;
         border: none;
         border-radius: 4px;
         cursor: pointer;
@@ -100,6 +100,6 @@ export default {
     }
 
     button:hover {
-        background-color: #7c563c;
+        background-color: #cc240e;
     }
 </style>

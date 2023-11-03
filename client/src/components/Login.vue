@@ -4,8 +4,8 @@
             <h1>User Login</h1>
             <p>Username: <input type="text" v-model="email" /></p>
             <p>Password: <input type="password" v-model="password" /></p>
-            <p><button type="submit">login</button></p>
-            <button @click="navigateTo(`/user/create`)" class="view-button">createUser</button>
+            <p><button type="submit">Login</button></p>
+            <button @click="navigateTo(`/user/create`)" class="view-button">CreateUser</button>
             <div class="error" v-if="error">{{error}}</div>
         </form>
     </div>
@@ -79,7 +79,7 @@ export default {
   button {
     width: 100%;
     padding: 10px;
-    background-color: #998570;
+    background-color: #5a189a;
     color: white;
     border: none;
     border-radius: 4px;
@@ -87,7 +87,7 @@ export default {
   }
 
 .view-button{
-  background-color: #e1d944;
+  background-color: #240046;
 }
 
   </style>
